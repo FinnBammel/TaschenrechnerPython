@@ -21,22 +21,43 @@ Second_Number = 0
 
 Result = 0
 
-
 #Zahlen nach Eingabe merken
 def add_numbers():
     global first_Number
     first_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
 
+if add_numbers:
+    addition = ResultDIV
+else:
+    total_sub = ResultDIV
 
 #Zahlen Addieren
 def addition():
     global Second_Number
     Second_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
-    global Result
-    Result = first_Number + Second_Number
-    eingabe.insert(tk.END, Result)
+    global ResultADD
+    ResultADD = first_Number + Second_Number
+    eingabe.insert(tk.END, ResultADD)
+
+#Subtraktion
+def subtraktion():
+    global first_Number
+    first_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+
+
+#Zahlen Subtrahieren
+def total_sub():
+    global Second_Number
+    Second_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+    global ResultDIV
+    ResultDIV = first_Number - Second_Number
+    eingabe.insert(tk.END, ResultDIV)
+
+
 
 
 #Zahlentasten
@@ -53,13 +74,14 @@ button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('
 
 #Rechentasten        
 button_plus = tk.Button(root, text="+", font=font_general, command=lambda: add_numbers ())
-button_minus = tk.Button(root, text="-", font=font_general,command=lambda: addChar ('-'))
+button_minus = tk.Button(root, text="-", font=font_general,command=lambda: subtraktion ())
 button_div = tk.Button(root, text="/", font=font_general,command=lambda: addChar ('/'))
 button_mult = tk.Button(root, text="*", font=font_general,command=lambda: addChar ('*'))
 
 #Ergebnis/Löschen
 button_clear = tk.Button(root, text="clear", font=font_general, command=lambda: eingabe.delete(0, tk.END))
 button_result = tk.Button(root, text="=", font=font_general,command=lambda: addition())
+
 #Aufteilung
 button7.grid(row=1,column=0)
 button8.grid(row=1,column=1)
@@ -80,5 +102,4 @@ button_mult.grid(row=4,column=0)
 button0.grid(row=4,column=1)
 button_div.grid(row=4,column=2)
 button_result.grid(row=4,column=3)
-
 root.mainloop()
