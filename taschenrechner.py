@@ -30,16 +30,16 @@ button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('
 add = (0, tk.END)
 
 def add_numbers():
-        add = float(add.get(0, tk.END))
+        add = (eingabe.get(0, tk.END))
         add = float(add.get(0, tk.END))
 
 result = add + add
 
 #Rechentasten        
-button_plus = tk.Button(root, text="+", font=font_general, command=lambda: result)
-button_minus = tk.Button(root, text="-", font=font_general)
-button_div = tk.Button(root, text="/", font=font_general)
-button_mult = tk.Button(root, text="*", font=font_general)
+button_plus = tk.Button(root, text="+", font=font_general, command=lambda: addChar('+'))
+button_minus = tk.Button(root, text="-", font=font_general,command=lambda: addChar ('-'))
+button_div = tk.Button(root, text="/", font=font_general,command=lambda: addChar ('/'))
+button_mult = tk.Button(root, text="*", font=font_general,command=lambda: addChar ('*'))
 
 #def clear_text(char):
 #    eingabe.delete("1.0", "end", char)
