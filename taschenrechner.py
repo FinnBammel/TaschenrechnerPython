@@ -11,8 +11,33 @@ eingabe = tk.Entry(root, font=font_general, borderwidth=20)
 eingabe.grid(row=0, column=0, columnspan=4)
 
 #Eingabe der Zahlen
-def addChar(char):
+def addChar(char): 
     eingabe.insert(tk.END, char)
+
+#Angabe Zahlen
+first_Number = 0
+
+Second_Number = 0
+
+Result = 0
+
+
+#Zahlen nach Eingabe merken
+def add_numbers():
+    global first_Number
+    first_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+
+
+#Zahlen Addieren
+def addition():
+    global Second_Number
+    Second_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+    global Result
+    Result = first_Number + Second_Number
+    eingabe.insert(tk.END, Result)
+
 
 #Zahlentasten
 button1 = tk.Button(root, text="1", font=font_general,command=lambda: addChar ('1'))
@@ -26,28 +51,15 @@ button8 = tk.Button(root, text="8", font=font_general,command=lambda: addChar ('
 button9 = tk.Button(root, text="9", font=font_general,command=lambda: addChar ('9'))
 button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('0'))
 
-#Addition
-add = (0, tk.END)
-
-def add_numbers():
-        add = (eingabe.get(0, tk.END))
-        add = float(add.get(0, tk.END))
-
-result = add + add
-
 #Rechentasten        
-button_plus = tk.Button(root, text="+", font=font_general, command=lambda: addChar('+'))
+button_plus = tk.Button(root, text="+", font=font_general, command=lambda: add_numbers ())
 button_minus = tk.Button(root, text="-", font=font_general,command=lambda: addChar ('-'))
 button_div = tk.Button(root, text="/", font=font_general,command=lambda: addChar ('/'))
 button_mult = tk.Button(root, text="*", font=font_general,command=lambda: addChar ('*'))
 
-#def clear_text(char):
-#    eingabe.delete("1.0", "end", char)
-
 #Ergebnis/Löschen
 button_clear = tk.Button(root, text="clear", font=font_general, command=lambda: eingabe.delete(0, tk.END))
-button_result = tk.Button(root, text="=", font=font_general, command=lambda: result)
-
+button_result = tk.Button(root, text="=", font=font_general,command=lambda: addition())
 #Aufteilung
 button7.grid(row=1,column=0)
 button8.grid(row=1,column=1)
