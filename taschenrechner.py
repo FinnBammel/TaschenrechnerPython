@@ -23,13 +23,18 @@ Result = 0
 
 DoSUB = False
 
+DoDIV = False
+
 #Zahlen nach Eingabe merken
 def add_numbers():
     global first_Number
     first_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
     global DoSUB
-    DoSUB = False
+    DoSUB = False   #Subtraktion AUS
+    global DoDIV
+    DoDIV = False   #Division AUS
+    
 
 #Zahlen Addieren
 def addition():
@@ -47,7 +52,9 @@ def SUB_Numbers():
     first_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
     global DoSUB
-    DoSUB = True
+    DoSUB = True    #Subtraktion AN
+    global DoDIV
+    DoDIV = False   #Division AUS
 
 
 #Zahlen Subtrahieren
@@ -59,6 +66,30 @@ def Subtraktion():
     ResultSUB = first_Number - Second_Number
     eingabe.insert(tk.END, ResultSUB)
 
+#Division
+def DIV_Numbers():
+    global first_Number
+    first_Number = float(eingabe.get())
+    eingabe.delete(0, tk.END)
+    global DoDIV
+    DoDIV = True    #Division AN
+    global DoSUB
+    DoSUB = False   #Subtraktion AUS
+
+
+#Zahlen Dividieren
+def Division():
+    global Second_Number
+    Second_Number = float(eingabe.get())
+    eingabe.delete(0, tk.END)
+    global ResultDIV
+    ResultDIV = first_Number / Second_Number
+    eingabe.insert(tk.END, ResultDIV)
+
+#def ZeroDIVerror():
+ #   if DoDIV:
+  #     0 = eingabe.delete
+   # else: 
 
 #Zahlentasten
 button1 = tk.Button(root, text="1", font=font_general,command=lambda: addChar ('1'))
@@ -75,7 +106,7 @@ button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('
 #Rechentasten        
 button_plus = tk.Button(root, text="+", font=font_general, command=lambda: add_numbers ())
 button_minus = tk.Button(root, text="-", font=font_general,command=lambda: SUB_Numbers ())
-button_div = tk.Button(root, text="/", font=font_general,command=lambda: addChar ('/'))
+button_div = tk.Button(root, text="/", font=font_general,command=lambda: DIV_Numbers ())
 button_mult = tk.Button(root, text="*", font=font_general,command=lambda: addChar ('*'))
 
 #Ergebnis/Löschen
@@ -88,7 +119,21 @@ def Total():
     if DoSUB:
        Subtraktion()
     else:
-        addition()
+        addition() or Division()
+       
+        global DoDIV    #Division
+        if DoDIV:
+            Division()
+        else: DoSUB
+
+
+
+
+
+
+
+
+
 
 #Aufteilung
 button7.grid(row=1,column=0)
