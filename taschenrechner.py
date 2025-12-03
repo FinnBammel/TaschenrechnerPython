@@ -1,5 +1,13 @@
 import tkinter as tk
 from tkinter import font
+from enum import Enum
+
+class SelectOperation(Enum):
+    NONE = 0
+    ADD = 1
+    SUB = 2
+    MULT = 3
+    DIV = 4
 
 root = tk.Tk()
 root.geometry("500x500")
@@ -21,7 +29,7 @@ Second_Number = 0
 
 Result = 0
 
-DoSUB = False
+selectedOperation = SelectOperation.NONE
 
 DoDIV = False
 
@@ -30,11 +38,8 @@ def add_numbers():
     global first_Number
     first_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
-    global DoSUB
-    DoSUB = False   #Subtraktion AUS
-    global DoDIV
-    DoDIV = False   #Division AUS
-    
+    global selectedOperation
+    selectedOperation = SelectOperation.ADD
 
 #Zahlen Addieren
 def addition():
@@ -51,10 +56,8 @@ def SUB_Numbers():
     global first_Number
     first_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
-    global DoSUB
-    DoSUB = True    #Subtraktion AN
-    global DoDIV
-    DoDIV = False   #Division AUS
+    global selectedOperation
+    selectedOperation = SelectOperation.SUB
 
 
 #Zahlen Subtrahieren
@@ -66,15 +69,31 @@ def Subtraktion():
     ResultSUB = first_Number - Second_Number
     eingabe.insert(tk.END, ResultSUB)
 
+
+
+# Button 'Multiplikation' gedrückt
+def MULT_Numbers():
+    global first_Number
+    first_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+    global selectedOperation
+    selectedOperation = SelectOperation.MULT
+
+# Zahlen multiplizieren
+def Multiplikation():
+    global Second_Number
+    Second_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+    result = first_Number * Second_Number
+    eingabe.insert(tk.END, result)
+
 #Division
 def DIV_Numbers():
     global first_Number
-    first_Number = float(eingabe.get())
+    first_Number = int(eingabe.get())
     eingabe.delete(0, tk.END)
-    global DoDIV
-    DoDIV = True    #Division AN
-    global DoSUB
-    DoSUB = False   #Subtraktion AUS
+    global selectedOperation
+    selectedOperation = SelectOperation.DIV
 
 
 #Zahlen Dividieren
@@ -82,14 +101,14 @@ def Division():
     global Second_Number
     Second_Number = float(eingabe.get())
     eingabe.delete(0, tk.END)
-    global ResultDIV
-    ResultDIV = first_Number / Second_Number
-    eingabe.insert(tk.END, ResultDIV)
+    if Second_Number == 0:
+        eingabe.insert(tk.END, 'Error')
+    else:
+        global ResultDIV
+        ResultDIV = first_Number / Second_Number
+        eingabe.insert(tk.END, ResultDIV)
 
-#def ZeroDIVerror():
- #   if DoDIV:
-  #     0 = eingabe.delete
-   # else: 
+
 
 #Zahlentasten
 button1 = tk.Button(root, text="1", font=font_general,command=lambda: addChar ('1'))
@@ -107,7 +126,7 @@ button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('
 button_plus = tk.Button(root, text="+", font=font_general, command=lambda: add_numbers ())
 button_minus = tk.Button(root, text="-", font=font_general,command=lambda: SUB_Numbers ())
 button_div = tk.Button(root, text="/", font=font_general,command=lambda: DIV_Numbers ())
-button_mult = tk.Button(root, text="*", font=font_general,command=lambda: addChar ('*'))
+button_mult = tk.Button(root, text="*", font=font_general,command=lambda: MULT_Numbers())
 
 #Ergebnis/Löschen
 button_clear = tk.Button(root, text="clear", font=font_general, command=lambda: eingabe.delete(0, tk.END))
@@ -115,24 +134,23 @@ button_result = tk.Button(root, text="=", font=font_general,command=lambda: Tota
 
 #Unterschied Addition/Subtraktion
 def Total():   
-    global DoSUB
-    if DoSUB:
-       Subtraktion()
-    else:
-        addition() or Division()
-       
-        global DoDIV    #Division
-        if DoDIV:
+    global selectedOperation
+    match selectedOperation:
+        case SelectOperation.NONE:
+            return
+        case SelectOperation.ADD:
+            addition()
+            return
+        case SelectOperation.SUB:
+            Subtraktion()
+            return
+        case SelectOperation.MULT:
+            Multiplikation()
+            return
+        case SelectOperation.DIV:
             Division()
-        else: DoSUB
-
-
-
-
-
-
-
-
+            return
+    selectedOperation = SelectOperation.NONE
 
 
 #Aufteilung
