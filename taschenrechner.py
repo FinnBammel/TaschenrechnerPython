@@ -154,24 +154,24 @@ def Total():
 
 
 #Aufteilung
-button7.grid(row=1,column=0)
-button8.grid(row=1,column=1)
-button9.grid(row=1,column=2)
-button_clear.grid(row=1,column=3)
+button7.grid(row=1,column=0, padx=(0), pady=(2), sticky='NSWE')
+button8.grid(row=1,column=1, padx=(0),pady=(2), sticky='NSWE')
+button9.grid(row=1,column=2, padx=(0), pady=(2), sticky='NSWE')
+button_clear.grid(row=1,column=3, padx=(0), pady=2, sticky='NSWE')
 
-button4.grid(row=2,column=0)
-button5.grid(row=2,column=1)
-button6.grid(row=2,column=2)
-button_plus.grid(row=2,column=3)
+button4.grid(row=2,column=0, padx=(0), pady=(2), sticky='NSWE')
+button5.grid(row=2,column=1, padx=(0), pady=(2), sticky='NSWE')
+button6.grid(row=2,column=2, padx=(0), pady=(2), sticky='NSWE')
+button_plus.grid(row=2,column=3, padx=(0), pady=(2), sticky='NSWE')
 
-button1.grid(row=3,column=0)
-button2.grid(row=3,column=1)
-button3.grid(row=3,column=2)
-button_minus.grid(row=3,column=3)
+button1.grid(row=3,column=0, padx=(0), pady=(2), sticky='NSWE')
+button2.grid(row=3,column=1, padx=(0), pady=(2), sticky='NSWE')
+button3.grid(row=3,column=2, padx=(0), pady=(2), sticky='NSWE')
+button_minus.grid(row=3,column=3, padx=(0), pady=(2), sticky='NSWE')
 
-button_mult.grid(row=4,column=0)
-button0.grid(row=4,column=1)
-button_div.grid(row=4,column=2)
-button_result.grid(row=4,column=3)
+button_mult.grid(row=4,column=0, padx=(0), pady=(2), sticky='NSWE')
+button0.grid(row=4,column=1, padx=(0), pady=(2), sticky='NSWE')
+button_div.grid(row=4,column=2, padx=(0), pady=(2), sticky='NSWE')
+button_result.grid(row=4,column=3, padx=(0), pady=(2), sticky='NSWE')
 
 root.mainloop()
