@@ -31,6 +31,8 @@ Result = 0
 
 selectedOperation = SelectOperation.NONE
 
+DoDIV = False
+
 #Zahlen nach Eingabe merken
 def add_numbers():
     global first_Number
@@ -67,6 +69,8 @@ def Subtraktion():
     ResultSUB = first_Number - Second_Number
     eingabe.insert(tk.END, ResultSUB)
 
+
+
 # Button 'Multiplikation' gedrückt
 def MULT_Numbers():
     global first_Number
@@ -82,6 +86,28 @@ def Multiplikation():
     eingabe.delete(0, tk.END)
     result = first_Number * Second_Number
     eingabe.insert(tk.END, result)
+
+#Division
+def DIV_Numbers():
+    global first_Number
+    first_Number = int(eingabe.get())
+    eingabe.delete(0, tk.END)
+    global selectedOperation
+    selectedOperation = SelectOperation.DIV
+
+
+#Zahlen Dividieren
+def Division():
+    global Second_Number
+    Second_Number = float(eingabe.get())
+    eingabe.delete(0, tk.END)
+    if Second_Number == 0:
+        eingabe.insert(tk.END, 'Error')
+    else:
+        global ResultDIV
+        ResultDIV = first_Number / Second_Number
+        eingabe.insert(tk.END, ResultDIV)
+
 
 
 #Zahlentasten
@@ -99,7 +125,7 @@ button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('
 #Rechentasten        
 button_plus = tk.Button(root, text="+", font=font_general, command=lambda: add_numbers ())
 button_minus = tk.Button(root, text="-", font=font_general,command=lambda: SUB_Numbers ())
-button_div = tk.Button(root, text="/", font=font_general,command=lambda: addChar ('/'))
+button_div = tk.Button(root, text="/", font=font_general,command=lambda: DIV_Numbers ())
 button_mult = tk.Button(root, text="*", font=font_general,command=lambda: MULT_Numbers())
 
 #Ergebnis/Löschen
@@ -114,14 +140,18 @@ def Total():
             return
         case SelectOperation.ADD:
             addition()
+            return
         case SelectOperation.SUB:
             Subtraktion()
+            return
         case SelectOperation.MULT:
             Multiplikation()
-        case SelectOperation.DIV:
             return
-            #Division
+        case SelectOperation.DIV:
+            Division()
+            return
     selectedOperation = SelectOperation.NONE
+
 
 #Aufteilung
 button7.grid(row=1,column=0)
