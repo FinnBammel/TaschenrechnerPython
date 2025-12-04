@@ -12,13 +12,13 @@ The big field at the top, is the entry field where you will see the numbers you 
 * Error after dividing with 0
 * Number buttons from 0 to 9
 
-**Opening calculator from terminal:**
+**Opening the calculator from terminal:**
 -
 
     PS C:\Users\AssessmentCSTx> cd .\Documents\Projekte\Taschenrechner\
     PS C:\Users\AssessmentCSTx\Documents\Projekte\Taschenrechner> python .\taschenrechner.py
 
-**User Inteface:**
+**User Interface:**
 -
 
 ![alt text](<User interface.png>)
