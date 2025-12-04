@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import font
 from enum import Enum
 
+
+
 class SelectOperation(Enum):
     NONE = 0
     ADD = 1
@@ -10,13 +12,24 @@ class SelectOperation(Enum):
     DIV = 4
 
 root = tk.Tk()
-root.geometry("500x500")
+root.geometry("340x295")
 
-font_general = font.Font (size=20, family="arial")
+root.columnconfigure(0, weight = 1)
+root.columnconfigure(1, weight = 1)
+root.columnconfigure(2, weight = 1)
+root.columnconfigure(3, weight = 1)
 
-eingabe = tk.Entry(root, font=font_general, borderwidth=20)
+root.rowconfigure(0, weight = 1)
+root.rowconfigure(1, weight = 1)
+root.rowconfigure(2, weight = 1)
+root.rowconfigure(3, weight = 1)
+root.rowconfigure(4, weight = 1)
 
-eingabe.grid(row=0, column=0, columnspan=4)
+font_general = font.Font (size = 20, family = "arial")
+
+eingabe = tk.Entry(root, font = font_general, borderwidth = 20)
+
+eingabe.grid(row = 0, column = 0, columnspan = 4)
 
 #Eingabe der Zahlen
 def addChar(char): 
@@ -102,7 +115,7 @@ def Division():
     Second_Number = float(eingabe.get())
     eingabe.delete(0, tk.END)
     if Second_Number == 0:
-        eingabe.insert(tk.END, 'Error')
+        eingabe.insert(tk.END, 'ERROR')
     else:
         global ResultDIV
         ResultDIV = first_Number / Second_Number
@@ -111,26 +124,26 @@ def Division():
 
 
 #Zahlentasten
-button1 = tk.Button(root, text="1", font=font_general,command=lambda: addChar ('1'))
-button2 = tk.Button(root, text="2", font=font_general,command=lambda: addChar ('2'))
-button3 = tk.Button(root, text="3", font=font_general,command=lambda: addChar ('3'))
-button4 = tk.Button(root, text="4", font=font_general,command=lambda: addChar ('4'))
-button5 = tk.Button(root, text="5", font=font_general,command=lambda: addChar ('5'))
-button6 = tk.Button(root, text="6", font=font_general,command=lambda: addChar ('6'))
-button7 = tk.Button(root, text="7", font=font_general,command=lambda: addChar ('7'))
-button8 = tk.Button(root, text="8", font=font_general,command=lambda: addChar ('8'))
-button9 = tk.Button(root, text="9", font=font_general,command=lambda: addChar ('9'))
-button0 = tk.Button(root, text="0", font=font_general,command=lambda: addChar ('0'))
+button1 = tk.Button(root, text = "1", font = font_general, command=lambda: addChar ('1'))
+button2 = tk.Button(root, text = "2", font = font_general, command=lambda: addChar ('2'))
+button3 = tk.Button(root, text = "3", font = font_general, command=lambda: addChar ('3'))
+button4 = tk.Button(root, text = "4", font = font_general, command=lambda: addChar ('4'))
+button5 = tk.Button(root, text = "5", font = font_general, command=lambda: addChar ('5'))
+button6 = tk.Button(root, text = "6", font = font_general, command=lambda: addChar ('6'))
+button7 = tk.Button(root, text = "7", font = font_general, command=lambda: addChar ('7'))
+button8 = tk.Button(root, text = "8", font = font_general, command=lambda: addChar ('8'))
+button9 = tk.Button(root, text = "9", font = font_general, command=lambda: addChar ('9'))
+button0 = tk.Button(root, text = "0", font = font_general, command=lambda: addChar ('0'))
 
 #Rechentasten        
-button_plus = tk.Button(root, text="+", font=font_general, command=lambda: add_numbers ())
-button_minus = tk.Button(root, text="-", font=font_general,command=lambda: SUB_Numbers ())
-button_div = tk.Button(root, text="/", font=font_general,command=lambda: DIV_Numbers ())
-button_mult = tk.Button(root, text="*", font=font_general,command=lambda: MULT_Numbers())
+button_plus = tk.Button(root, text = "+", font = font_general, command=lambda: add_numbers ())
+button_minus = tk.Button(root, text = "-", font = font_general, command=lambda: SUB_Numbers ())
+button_div = tk.Button(root, text = "/", font = font_general, command=lambda: DIV_Numbers ())
+button_mult = tk.Button(root, text = "*", font = font_general, command=lambda: MULT_Numbers())
 
 #Ergebnis/Löschen
-button_clear = tk.Button(root, text="clear", font=font_general, command=lambda: eingabe.delete(0, tk.END))
-button_result = tk.Button(root, text="=", font=font_general,command=lambda: Total())
+button_clear = tk.Button(root, text = "clear", font = font_general, command=lambda: eingabe.delete(0, tk.END))
+button_result = tk.Button(root, text = "=", font = font_general,command=lambda: Total())
 
 #Unterschied Addition/Subtraktion
 def Total():   
@@ -154,24 +167,26 @@ def Total():
 
 
 #Aufteilung
-button7.grid(row=1,column=0, padx=(0), pady=(2), sticky='NSWE')
-button8.grid(row=1,column=1, padx=(0),pady=(2), sticky='NSWE')
-button9.grid(row=1,column=2, padx=(0), pady=(2), sticky='NSWE')
-button_clear.grid(row=1,column=3, padx=(0), pady=2, sticky='NSWE')
+button7.grid(row = 1, column = 0, padx = (0), pady = (0), sticky = 'NSWE')
+button8.grid(row = 1, column = 1, padx = (0),pady = (0), sticky = 'NSWE')
+button9.grid(row = 1, column = 2, padx = (0), pady = (0), sticky = 'NSWE')
+button_clear.grid(row = 1, column = 3, padx = (0), pady = (0), sticky = 'NSWE')
 
-button4.grid(row=2,column=0, padx=(0), pady=(2), sticky='NSWE')
-button5.grid(row=2,column=1, padx=(0), pady=(2), sticky='NSWE')
-button6.grid(row=2,column=2, padx=(0), pady=(2), sticky='NSWE')
-button_plus.grid(row=2,column=3, padx=(0), pady=(2), sticky='NSWE')
+button4.grid(row = 2, column = 0, padx = (0), pady = (0), sticky = 'NSWE')
+button5.grid(row = 2, column = 1, padx = (0), pady = (0), sticky = 'NSWE')
+button6.grid(row = 2, column = 2, padx = (0), pady = (0), sticky = 'NSWE')
+button_plus.grid(row =2, column = 3, padx = (0), pady = (0), sticky = 'NSWE')
 
-button1.grid(row=3,column=0, padx=(0), pady=(2), sticky='NSWE')
-button2.grid(row=3,column=1, padx=(0), pady=(2), sticky='NSWE')
-button3.grid(row=3,column=2, padx=(0), pady=(2), sticky='NSWE')
-button_minus.grid(row=3,column=3, padx=(0), pady=(2), sticky='NSWE')
+button1.grid(row = 3, column = 0, padx = (0), pady = (0), sticky = 'NSWE')
+button2.grid(row = 3, column = 1, padx = (0), pady = (0), sticky = 'NSWE')
+button3.grid(row = 3, column = 2, padx = (0), pady = (0), sticky = 'NSWE')
+button_minus.grid(row = 3, column = 3, padx = (0), pady = (0), sticky = 'NSWE')
 
-button_mult.grid(row=4,column=0, padx=(0), pady=(2), sticky='NSWE')
-button0.grid(row=4,column=1, padx=(0), pady=(2), sticky='NSWE')
-button_div.grid(row=4,column=2, padx=(0), pady=(2), sticky='NSWE')
-button_result.grid(row=4,column=3, padx=(0), pady=(2), sticky='NSWE')
+button_mult.grid(row = 4, column = 0, padx = (0), pady = (0), sticky = 'NSWE')
+button0.grid(row = 4, column = 1, padx = (0), pady = (0), sticky = 'NSWE')
+button_div.grid(row = 4, column = 2, padx = (0), pady = (0), sticky = 'NSWE')
+button_result.grid(row = 4, column = 3, padx = (0), pady = (0), sticky = 'NSWE')
 
 root.mainloop()
+
+
