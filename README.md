@@ -21,6 +21,4 @@ The big field at the top, is the entry field where you will see the numbers you 
 **User Inteface:**
 -
 
-![alt text][interface]
-
-[Interface]: <Screenshot (2).png>
+![alt text](<User interface.png>)
